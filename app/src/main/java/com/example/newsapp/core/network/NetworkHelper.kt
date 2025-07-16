@@ -1,15 +1,18 @@
-package com.example.newsapp.util
+package com.example.newsapp.core.network
 
-import com.example.newsapp.ApiService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.example.newsapp.*
+
 
 object NetworkHelper {
-    private const val BASE_URL = "https://newsapi.org/"
 
+   // val baseUrl = BuildConfig.BASE_URL
+
+    //Configuration should be in either DI/core layer
     val api: ApiService by lazy {
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl("")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)

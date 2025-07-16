@@ -20,6 +20,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.newsapp.feature.home.presentation.viewmodel.HomeViewModel
 
 @Composable
 fun HomeScreen(navController: NavController,viewModel: HomeViewModel = viewModel()) {
@@ -27,6 +28,7 @@ fun HomeScreen(navController: NavController,viewModel: HomeViewModel = viewModel
     val newList = viewModel.newList
     val loading = viewModel.isLoading
 
+    //Make loading as common component
     if (loading) {
         Box(
             modifier = Modifier
@@ -79,7 +81,7 @@ fun HomeScreen(navController: NavController,viewModel: HomeViewModel = viewModel
                         fontWeight = FontWeight.Normal,
                     )
                     Spacer(modifier = Modifier.height(10.dp))
-                    Divider()
+                    HorizontalDivider()
                 }
             }
         }

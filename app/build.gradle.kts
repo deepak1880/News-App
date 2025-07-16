@@ -18,6 +18,10 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+
+        buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
+
     }
 
     buildTypes {

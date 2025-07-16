@@ -19,11 +19,13 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.newsapp.util.HyperlinkText
-import com.example.newsapp.util.extractDate
+import com.example.newsapp.core.util.HyperlinkText
+import com.example.newsapp.core.util.toSimpleISTFormat
 
+//Use Encapsulation to improve the code Reusability
 @Composable
 fun DetailsScreen(
     title: String,
@@ -109,7 +111,7 @@ fun DetailsScreen(
 
             )
             Text(
-                text = publishedAt.extractDate(),
+                text = publishedAt.toSimpleISTFormat(),
                 fontSize = 16.sp,
                 fontWeight = FontWeight.Bold,
                 fontFamily = FontFamily.Serif,
@@ -129,7 +131,9 @@ fun DetailsScreen(
                     .padding(top = 10.dp)
 
             )
-            HyperlinkText(url)
+            HyperlinkText(onClick = {
+                //Add a click event
+            })
         }
 
 

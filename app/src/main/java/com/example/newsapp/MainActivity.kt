@@ -16,6 +16,9 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.newsapp.feature.favorite.FavoriteScreen
 import com.example.newsapp.feature.home.presentation.HomeScreen
+import com.example.newsapp.feature.home.presentation.navigation.NavigationBarScreen
+import com.example.newsapp.feature.home.presentation.navigation.Screen
+import com.example.newsapp.feature.home.presentation.navigation.TopBar
 import com.example.newsapp.feature.search.SearchScreen
 
 class MainActivity : ComponentActivity() {

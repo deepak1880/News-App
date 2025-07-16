@@ -1,4 +1,4 @@
-package com.example.newsapp
+package com.example.newsapp.feature.home.presentation.navigation
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.NavigationBar
@@ -15,6 +15,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
+import com.example.newsapp.MyIndicatorColor
+import com.example.newsapp.MySelectedIconColor
 
 @Composable
 fun NavigationBarScreen(navController: NavController) {

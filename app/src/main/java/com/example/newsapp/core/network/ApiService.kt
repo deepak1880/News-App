@@ -1,5 +1,6 @@
-package com.example.newsapp
+package com.example.newsapp.core.network
 
+import com.example.newsapp.NewsResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
