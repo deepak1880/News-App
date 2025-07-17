@@ -1,24 +1,20 @@
 package com.example.newsapp.feature.home.presentation.viewmodel
 
-import android.util.Log
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.newsapp.Article
-import com.example.newsapp.core.network.NetworkHelper
+import com.example.newsapp.core.utils.Resource
+import com.example.newsapp.feature.home.domain.usecase.GetNewsUseCase
+import com.example.newsapp.feature.home.presentation.NewsUiState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val getNewsUseCase: GetNewsUseCase
+) : ViewModel() {
 
-    //Use Flows here
-    var newList by mutableStateOf<List<Article>>(emptyList())
-        private set
-
-    //Use Flows here
-    var isLoading by mutableStateOf(true)
-        private set
+    private val _uiState = MutableStateFlow(NewsUiState())
+    val uiState: StateFlow<NewsUiState> = _uiState
 
     init {
         fetchNews()
@@ -26,16 +22,18 @@ class HomeViewModel : ViewModel() {
 
     private fun fetchNews() {
         viewModelScope.launch {
-            try {
-                isLoading = true
-                val response = NetworkHelper.api.getNews()
-                newList = response.articles
-                Log.e("DATA", "fetchNews: ${newList}")
-            } catch (e: Exception) {
-                //Need handling here
-                e.printStackTrace()
-            } finally {
-                isLoading = false
+            getNewsUseCase.invoke().collect { response ->
+                when (response) {
+                    is Resource.Loading ->
+                        _uiState.value = NewsUiState(isLoading = true)
+
+                    is Resource.Success ->
+                        _uiState.value = NewsUiState(articles = response.data ?: emptyList(), isLoading = false)
+
+                    is Resource.Error ->
+                        _uiState.value = NewsUiState(errorMessage = response.message, isLoading = false)
+                }
+
             }
         }
     }

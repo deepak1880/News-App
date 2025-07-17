@@ -7,12 +7,11 @@ import com.example.newsapp.*
 
 object NetworkHelper {
 
-   // val baseUrl = BuildConfig.BASE_URL
+    val baseUrl = BuildConfig.BASE_URL
 
-    //Configuration should be in either DI/core layer
     val api: ApiService by lazy {
         Retrofit.Builder()
-            .baseUrl("")
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
             .create(ApiService::class.java)

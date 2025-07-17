@@ -6,35 +6,22 @@ import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 
-//Todo make it capital
-//@ResDrawable
-data class navigationItem(val title: String, val icon: ImageVector, val route: String)
+data class NavigationItem(val title: String, val icon: ImageVector, val route: String)
 
 val navigationBarItem = listOf(
-    navigationItem(
+    NavigationItem(
         title = "Home",
         icon = Icons.Default.Home,
         route = Screen.Home.route
     ),
-    navigationItem(
+    NavigationItem(
         title = "Favourite",
         icon = Icons.Default.Favorite,
         route = Screen.Favourite.route
     ),
-    navigationItem(
+    NavigationItem(
         title = "Search",
         icon = Icons.Default.Search,
         route = Screen.Search.route
     )
 )
-
-//Navigation
-sealed class Screen(val route: String) {
-    data object Home : Screen("home_screen")
-    data object Favourite : Screen("favourite_screen")
-    data object Search : Screen("search_screen")
-//    data object DetailsScreenX(
-//        val authorName:String
-//    )
-    data object DetailScreen : Screen("details_screen/{title}/{description}/{authorName}/{imageUrl}/{content}/{publishedAt}/{url}")
-}

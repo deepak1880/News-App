@@ -9,16 +9,23 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.newsapp.core.network.NetworkHelper
 import com.example.newsapp.feature.favorite.FavoriteScreen
-import com.example.newsapp.feature.home.presentation.HomeScreen
+import com.example.newsapp.feature.home.data.NewsRepositoryImpl
+import com.example.newsapp.feature.home.domain.usecase.GetNewsUseCase
+import com.example.newsapp.feature.home.presentation.ui.HomeScreen
 import com.example.newsapp.feature.home.presentation.navigation.NavigationBarScreen
 import com.example.newsapp.feature.home.presentation.navigation.Screen
 import com.example.newsapp.feature.home.presentation.navigation.TopBar
+import com.example.newsapp.feature.home.presentation.viewmodel.HomeViewModel
+import com.example.newsapp.feature.home.presentation.viewmodel.HomeViewModelFactory
+import com.example.newsapp.feature.newsdetail.presentation.ui.DetailsScreen
 import com.example.newsapp.feature.search.SearchScreen
 
 class MainActivity : ComponentActivity() {
@@ -26,13 +33,20 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MainScreen()
+
         }
     }
 }
 
 @Composable
 fun MainScreen() {
+    val repository = NewsRepositoryImpl(NetworkHelper.api)
+    val useCase = GetNewsUseCase(repository)
+    val viewModelFactory = HomeViewModelFactory(useCase)
+
     val navController = rememberNavController()
+    val viewModel: HomeViewModel = viewModel(factory = viewModelFactory)
+
 
     Scaffold(
         modifier = Modifier.fillMaxSize(),
@@ -48,7 +62,7 @@ fun MainScreen() {
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(Screen.Home.route) {
-                HomeScreen(navController)
+                HomeScreen(navController, viewModel)
             }
             composable(Screen.Search.route) {
                 SearchScreen()

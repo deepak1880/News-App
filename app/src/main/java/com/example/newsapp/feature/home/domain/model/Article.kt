@@ -1,8 +1,4 @@
-package com.example.newsapp
-
-data class NewsResponse(
-    val articles: List<Article>
-)
+package com.example.newsapp.feature.home.domain.model
 
 data class Article(
     val title: String,

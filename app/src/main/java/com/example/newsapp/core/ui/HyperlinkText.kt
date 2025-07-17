@@ -1,4 +1,4 @@
-package com.example.newsapp.core.util
+package com.example.newsapp.core.ui
 
 import androidx.compose.foundation.clickable
 import androidx.compose.ui.text.style.TextDecoration
@@ -20,7 +20,7 @@ fun HyperlinkText(
 ) {
     Text(
         text = text,
-        color = Color.Blue,s
+        color = Color.Blue,
         fontSize = 16.sp,
         fontFamily = FontFamily.Serif,
         fontWeight = FontWeight.Bold,
