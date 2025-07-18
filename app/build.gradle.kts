@@ -6,7 +6,6 @@ plugins {
     alias(libs.plugins.kotlin.compose)
 }
 
-val apiKey = project.findProperty("API_KEY") as? String ?: ""
 
 android {
     namespace = "com.example.newsapp"
@@ -32,11 +31,11 @@ android {
                 "proguard-rules.pro"
             )
             buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
-            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+            buildConfigField("String", "API_KEY", "\"b2b4977236414666b636050a1e48dacf\"")
         }
         debug {
             buildConfigField("String", "BASE_URL", "\"https://newsapi.org/\"")
-            buildConfigField("String", "API_KEY", "\"$apiKey\"")
+            buildConfigField("String", "API_KEY", "\"b2b4977236414666b636050a1e48dacf\"")
         }
     }
     compileOptions {

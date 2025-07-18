@@ -143,12 +143,12 @@ fun DetailsScreen(
 @Composable
 fun PreviewDetailsScreen() {
     DetailsScreen(
-        title = "Deepak",
-        description = "I am dee",
-        imageUrl = "",
-        authorName = "Deepk Amndal",
-        publishedAt = "543",
-        content = "",
-        url = ""
+        title = "Deepak Mandal",
+        description = "This is a sample article description.",
+        imageUrl = "https://via.placeholder.com/600x400.png?text=News+Image",
+        authorName = "Deepak Mandal",
+        publishedAt = "2025-07-17",
+        content = "Here is the full content of the news article.",
+        url = "https://example.com"
     )
 }

@@ -16,7 +16,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.newsapp.core.network.NetworkHelper
-import com.example.newsapp.feature.favorite.FavoriteScreen
 import com.example.newsapp.feature.home.data.NewsRepositoryImpl
 import com.example.newsapp.feature.home.domain.usecase.GetNewsUseCase
 import com.example.newsapp.feature.home.presentation.ui.HomeScreen
@@ -26,7 +25,6 @@ import com.example.newsapp.feature.home.presentation.navigation.TopBar
 import com.example.newsapp.feature.home.presentation.viewmodel.HomeViewModel
 import com.example.newsapp.feature.home.presentation.viewmodel.HomeViewModelFactory
 import com.example.newsapp.feature.newsdetail.presentation.ui.DetailsScreen
-import com.example.newsapp.feature.search.SearchScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,7 +41,6 @@ fun MainScreen() {
     val repository = NewsRepositoryImpl(NetworkHelper.api)
     val useCase = GetNewsUseCase(repository)
     val viewModelFactory = HomeViewModelFactory(useCase)
-
     val navController = rememberNavController()
     val viewModel: HomeViewModel = viewModel(factory = viewModelFactory)
 
@@ -65,10 +62,10 @@ fun MainScreen() {
                 HomeScreen(navController, viewModel)
             }
             composable(Screen.Search.route) {
-                SearchScreen()
+               // SearchScreen()
             }
             composable(Screen.Favourite.route) {
-                FavoriteScreen()
+              //  FavoriteScreen()
             }
             composable(
                 Screen.DetailScreen.route,
