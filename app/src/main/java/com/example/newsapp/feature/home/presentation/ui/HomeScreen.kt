@@ -1,7 +1,6 @@
 package com.example.newsapp.feature.home.presentation.ui
 
 
-import android.net.Uri
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -20,6 +19,7 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.example.newsapp.feature.home.presentation.navigation.Screen
 import com.example.newsapp.feature.home.presentation.viewmodel.HomeViewModel
 
 @Composable
@@ -43,14 +43,8 @@ fun HomeScreen(
                     modifier = Modifier
                         .padding(15.dp, 10.dp, 15.dp, 0.dp)
                         .clickable {
-                            val encodedTitle = Uri.encode(article.title)
-                            val encodedImage = Uri.encode(article.urlToImage)
-                            val encodedDescription = Uri.encode(article.description)
-                            val encodedAuthor = Uri.encode(article.author)
-                            val encodedContent = Uri.encode(article.content)
-                            val encodedUrl = Uri.encode(article.url)
-                            val encodedPublishAt = Uri.encode(article.publishedAt)
-                            navController.navigate("details_screen/$encodedTitle/$encodedDescription/$encodedAuthor/$encodedImage/$encodedContent/$encodedPublishAt/$encodedUrl")
+                            navController.currentBackStackEntry?.savedStateHandle?.set("articles", article)
+                            navController.navigate(Screen.DetailScreen.route)
                         }
                 ) {
                     AsyncImage(

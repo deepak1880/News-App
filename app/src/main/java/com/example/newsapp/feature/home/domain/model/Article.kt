@@ -1,5 +1,7 @@
 package com.example.newsapp.feature.home.domain.model
 
+import java.io.Serializable
+
 data class Article(
     val title: String,
     val description: String?,
@@ -8,4 +10,4 @@ data class Article(
     val url: String,
     val publishedAt: String,
     val content: String
-)
+) : Serializable

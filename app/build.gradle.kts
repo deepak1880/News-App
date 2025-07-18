@@ -86,5 +86,7 @@ dependencies {
     //Coil
     implementation("io.coil-kt:coil-compose:2.5.0")
 
+    //material3
+    implementation("androidx.compose.material3:material3:1.2.1") // or latest
 
 }

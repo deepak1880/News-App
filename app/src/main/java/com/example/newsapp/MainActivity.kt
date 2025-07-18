@@ -10,11 +10,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.navigation.navArgument
 import com.example.newsapp.core.network.NetworkHelper
 import com.example.newsapp.feature.home.data.NewsRepositoryImpl
 import com.example.newsapp.feature.home.domain.usecase.GetNewsUseCase
@@ -24,6 +22,7 @@ import com.example.newsapp.feature.home.presentation.navigation.Screen
 import com.example.newsapp.feature.home.presentation.navigation.TopBar
 import com.example.newsapp.feature.home.presentation.viewmodel.HomeViewModel
 import com.example.newsapp.feature.home.presentation.viewmodel.HomeViewModelFactory
+import com.example.newsapp.feature.newsdetail.presentation.components.ArticleViewerScreen
 import com.example.newsapp.feature.newsdetail.presentation.ui.DetailsScreen
 
 class MainActivity : ComponentActivity() {
@@ -62,41 +61,16 @@ fun MainScreen() {
                 HomeScreen(navController, viewModel)
             }
             composable(Screen.Search.route) {
-               // SearchScreen()
+                // SearchScreen()
             }
             composable(Screen.Favourite.route) {
-              //  FavoriteScreen()
+                //  FavoriteScreen()
             }
-            composable(
-                Screen.DetailScreen.route,
-                arguments = listOf(
-                    navArgument("title") { type = NavType.StringType },
-                    navArgument("description") { type = NavType.StringType },
-                    navArgument("authorName") { type = NavType.StringType },
-                    navArgument("imageUrl") { type = NavType.StringType },
-                    navArgument("content") { type = NavType.StringType },
-                    navArgument("publishedAt") { type = NavType.StringType },
-                    navArgument("url") { type = NavType.StringType }
-                )
-            ) { backStackEntry ->
-                val title = backStackEntry.arguments?.getString("title")
-                val description = backStackEntry.arguments?.getString("description")
-                val authorName = backStackEntry.arguments?.getString("authorName")
-                val imageUrl = backStackEntry.arguments?.getString("imageUrl")
-                val publishedAt = backStackEntry.arguments?.getString("publishedAt")
-                val content = backStackEntry.arguments?.getString("content")
-                val url = backStackEntry.arguments?.getString("url")
-
-                DetailsScreen(
-                    title = title.toString(),
-                    description = description.toString(),
-                    imageUrl = imageUrl.toString(),
-                    authorName = authorName.toString(),
-                    content = content.toString(),
-                    publishedAt = publishedAt.toString(),
-                    url = url.toString()
-                )
-
+            composable(Screen.DetailScreen.route) {
+                DetailsScreen(navController)
+            }
+            composable(Screen.ArticleViewer.route) {
+                ArticleViewerScreen(navController)
             }
         }
 
